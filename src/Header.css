@@ -1,0 +1,135 @@
+@font-face {
+  font-family: "Chunky-Puffly";
+  src: url("./fonts/chunky-puffly-font/ChunkypufflyRegular-drB0l.otf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.header-section {
+  padding: 2rem 1.25rem 0;
+  color: #ffffff;
+}
+
+.header-shell {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.5rem;
+  background: rgba(7, 25, 35, 0.72);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.brand-block {
+  max-width: 680px;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #6ed2ff;
+}
+
+.app-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-family: "Chunky-Puffly", sans-serif;
+  color: #ffffff;
+}
+
+.tagline {
+  margin: 0.45rem 0 0;
+  color: #c7d8e4;
+  font-size: 0.98rem;
+  max-width: 600px;
+}
+
+.date-pill {
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: rgba(110, 210, 255, 0.15);
+  border: 1px solid rgba(110, 210, 255, 0.3);
+  color: #ebf8ff;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+
+.nav-buttons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  min-width: 92px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(135deg, #123a4d 0%, #0c2432 100%);
+  color: #f5f8ff;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nav-buttons:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #1a4b60 0%, #102c3c 100%);
+  border-color: rgba(110, 210, 255, 0.36);
+}
+
+.nav-buttons.active {
+  background: linear-gradient(135deg, #2c7d9b 0%, #14516a 100%);
+  border-color: rgba(110, 210, 255, 0.6);
+  box-shadow: 0 0 0 1px rgba(110, 210, 255, 0.18);
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .date-pill {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-section {
+    padding: 1rem 0.8rem 0;
+  }
+
+  .header-shell {
+    padding: 1rem;
+  }
+
+  .nav {
+    justify-content: flex-start;
+  }
+
+  .nav-buttons {
+    min-width: 0;
+    flex: 1 1 calc(50% - 0.7rem);
+  }
+}

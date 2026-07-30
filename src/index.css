@@ -1,0 +1,22 @@
+body {
+  background-color: hsl(199, 58%, 6%);
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: auto;
+  scrollbar-color: hsl(189, 97%, 28%) hsl(199, 58%, 6%);
+}
+
+::selection {
+  background-color: hsl(189, 97%, 28%);
+  color: #ffffff;
+}
+
+/* 
+DONT USE ALL CAPS IN CONTENT, FOR SCREEN READERS, IT WILL READ AS ALL CAPS.
+USE 
+text-transform: uppercase;
+INSTEAD, IT WILL READ AS NORMAL TEXT, BUT DISPLAY AS ALL CAPS.
+*/
