@@ -5,13 +5,13 @@ const categories = [
   { label: "Health", value: "health" },
   { label: "Business", value: "business" },
   { label: "Science", value: "science" },
-  { label: "Technology", value: "technology" },
+  { label: "Technology", value: "tech" },
   { label: "Entertainment", value: "entertainment" },
   { label: "Sports", value: "sports" },
 ];
 
 function Header({ selectedCategory, onSelectCategory }) {
-  const formattedDate = new Date().toLocaleDateString("en-US", {
+  const formattedDate = new Date().toLocaleDateString("en-UK", {
     weekday: "long",
     month: "long",
     day: "numeric",

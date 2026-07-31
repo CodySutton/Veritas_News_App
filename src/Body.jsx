@@ -6,31 +6,34 @@ function Body({ selectedCategory }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const fetchNewsArticles = async () => {
-    setLoading(true);
-
-    try {
-      const url = new URL("https://newsapi.org/v2/top-headlines");
-      url.searchParams.set("country", "us");
-      url.searchParams.set("category", selectedCategory || "general");
-      url.searchParams.set("apiKey", import.meta.env.VITE_APP_NEWS_KEY);
-
-      const response = await fetch(url);
-      const data = await response.json();
-      setArticles(data.articles || []);
-      setError("");
-    } catch (error) {
-      console.error("Error fetching news articles:", error);
-      setError(
-        "We couldn't refresh the stories right now. Please try again shortly.",
-      );
-      setArticles([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    async function fetchNewsArticles() {
+      setLoading(true);
+      setError("");
+
+      try {
+        const category = selectedCategory || "general";
+        const response = await fetch(
+          `/api/news?category=${encodeURIComponent(category)}`,
+        );
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Unable to fetch news articles");
+        }
+
+        setArticles(data.articles || []);
+      } catch (error) {
+        console.error("Error fetching news articles:", error);
+        setError(
+          "We couldn't refresh the stories right now. Please try again shortly.",
+        );
+        setArticles([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchNewsArticles();
   }, [selectedCategory]);
 
