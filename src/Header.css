@@ -56,37 +56,65 @@
   max-width: 600px;
 }
 
+.header-date-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
 .date-pill {
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.7rem;
   background: rgba(110, 210, 255, 0.15);
   border: 1px solid rgba(110, 210, 255, 0.3);
   color: #ebf8ff;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   white-space: nowrap;
+}
+
+.weather-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  display: inline-block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(110, 210, 255, 0.35));
+}
+
+.weather-pill {
+  min-width: 7rem;
 }
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 0.7rem;
-  margin-top: 1.4rem;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.2rem;
+  width: min(720px, 100%);
+  margin-inline: auto;
 }
 
 .nav-buttons {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.7rem 1rem;
-  min-width: 92px;
-  border-radius: 999px;
+  padding: 0.5rem 0.7rem;
+  min-width: 78px;
+  border-radius: 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: linear-gradient(135deg, #123a4d 0%, #0c2432 100%);
   color: #f5f8ff;
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.72rem;
   font-weight: 600;
+  white-space: nowrap;
   transition:
     transform 0.2s ease,
     background 0.2s ease,
@@ -105,13 +133,58 @@
   box-shadow: 0 0 0 1px rgba(110, 210, 255, 0.18);
 }
 
+.nav-dropdown-wrap {
+  display: none;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 1rem;
+  margin-left: 0;
+  text-align: left;
+}
+
+.nav-dropdown {
+  width: fit-content;
+  min-width: 0;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(110, 210, 255, 0.35);
+  background: rgba(10, 31, 42, 0.95);
+  color: #f5f8ff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 980px) {
+  .nav {
+    display: none;
+  }
+
+  .nav-dropdown-wrap {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
   }
 
-  .date-pill {
+  .header-date-group {
     align-self: flex-start;
+    justify-content: flex-start;
   }
 }
 
@@ -122,15 +195,6 @@
 
   .header-shell {
     padding: 1rem;
-  }
-
-  .nav {
-    justify-content: flex-start;
-  }
-
-  .nav-buttons {
-    min-width: 0;
-    flex: 1 1 calc(50% - 0.7rem);
   }
 }
 
