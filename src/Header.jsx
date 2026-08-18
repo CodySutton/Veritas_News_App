@@ -11,39 +11,48 @@ const categories = [
   { label: "Sports", value: "sports" },
 ];
 
+const DEFAULT_LONDON_COORDS = { lat: 51.5074, lon: -0.1278 };
+
 export function useWeatherByLocation({ apiKey, units = "metric" } = {}) {
-  const [coords, setCoords] = useState(null);
+  const [coords, setCoords] = useState(DEFAULT_LONDON_COORDS);
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // This feature was previously gathering the user's location to return local weather data.
+  // const getLocation = useCallback(() => {
+  //   setLoading(true);
+  //   setError(null);
+  //
+  //   if (!("geolocation" in navigator)) {
+  //     setError("Geolocation is not supported by this browser.");
+  //     setLoading(false);
+  //     return;
+  //   }
+  //
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       setCoords({
+  //         lat: position.coords.latitude,
+  //         lon: position.coords.longitude,
+  //       });
+  //     },
+  //     (geoError) => {
+  //       setError(geoErrorMessage(geoError.code));
+  //       setLoading(false);
+  //     },
+  //     {
+  //       enableHighAccuracy: false,
+  //       timeout: 10000,
+  //       maximumAge: 5 * 60 * 1000,
+  //     },
+  //   );
+  // }, []);
+
   const getLocation = useCallback(() => {
     setLoading(true);
     setError(null);
-
-    if (!("geolocation" in navigator)) {
-      setError("Geolocation is not supported by this browser.");
-      setLoading(false);
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setCoords({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        });
-      },
-      (geoError) => {
-        setError(geoErrorMessage(geoError.code));
-        setLoading(false);
-      },
-      {
-        enableHighAccuracy: false,
-        timeout: 10000,
-        maximumAge: 5 * 60 * 1000,
-      },
-    );
+    setCoords(DEFAULT_LONDON_COORDS);
   }, []);
 
   useEffect(() => {
@@ -102,18 +111,18 @@ export function useWeatherByLocation({ apiKey, units = "metric" } = {}) {
   return { weather, coords, loading, error, refetch: getLocation };
 }
 
-function geoErrorMessage(code) {
-  switch (code) {
-    case 1:
-      return "Location permission was denied.";
-    case 2:
-      return "Location information is unavailable.";
-    case 3:
-      return "Getting your location timed out.";
-    default:
-      return "An unknown geolocation error occurred.";
-  }
-}
+// function geoErrorMessage(code) {
+//   switch (code) {
+//     case 1:
+//       return "Location permission was denied.";
+//     case 2:
+//       return "Location information is unavailable.";
+//     case 3:
+//       return "Getting your location timed out.";
+//     default:
+//       return "An unknown geolocation error occurred.";
+//   }
+// }
 
 function Header({ selectedCategory, onSelectCategory }) {
   const formattedDate = new Date().toLocaleDateString("en-UK", {
